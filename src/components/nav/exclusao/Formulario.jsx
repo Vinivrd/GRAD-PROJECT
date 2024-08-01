@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import InputText from '../Forms/InputText';
-import SelectInput from '../Forms/SelectInput';
-import RadioInput from '../Forms/RadioInput';
+import InputText from '../../Forms/InputText';
+import SelectInput from '../../Forms/InputText';
+import RadioInput from '../../Forms/RadioInput';
 
 const Formulario = () => {
   const [formData, setFormData] = useState({

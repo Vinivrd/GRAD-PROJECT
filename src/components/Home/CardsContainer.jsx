@@ -8,20 +8,20 @@ const cardData = [
         description: `A solicitação de exclusão de disciplinas do 2º semestre/2024 poderá ser feita de 25/07 a 30/08.
                       De acordo com o artigo 73 do Regimento Geral da USP, a carga horária mínima não poderá ser inferior a 12 créditos-aula semanais.
                       Casos excepcionais serão analisados.`,
-        link: '#'
+        link: '/exclusao'
     },
     {
         title: 'Trancamento de disciplinas',
         description: `A solicitação de trancamento de disciplinas do 2º semestre/2024 poderá ser feita de 31/08 a 16/09.
                       De acordo com o artigo 73 do Regimento Geral da USP, a carga horária mínima não poderá ser inferior a 12 créditos-aula semanais.
                       Casos excepcionais serão analisados.`,
-        link: '#'
+        link: '/trancamento'
     },
     {
         title: 'Matrícula em menos de 12 créditos-aula / em mais de 40 créditos-aula',
         description: `De acordo com o artigo 73 do Regimento Geral da USP, a carga horária mínima não poderá ser inferior a 12 créditos-aula semanais e, de acordo com o artigo 2.º da Resolução CoG nº 3903, não poderá ser superior a 40 horas.
                       Exceção: Alunos que são prováveis formandos e aqueles que não conseguem se inscrever em mais disciplinas por falta de requisitos.`,
-        link: '#'
+        link: '/matricula'
     },
     {
         title: 'Trancamento total do curso',

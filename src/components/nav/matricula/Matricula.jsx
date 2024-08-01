@@ -2,11 +2,11 @@ import React,{useState} from "react";
 import emailjs from 'emailjs-com';
 import Formulario from "./Formulario";
 
-const Trancamento = () => {
+const Matricula =  () => {
     const [formData,setFormData] = useState({
         name:'',
-        email:'',
-        message:''
+        email: '',
+        message: ''
     })
 
     const handleChange = (e) => {
@@ -27,13 +27,10 @@ const Trancamento = () => {
             });
     };
 
-
-    return(
-        <div className="max-w-5xl mx-auto p-4 w-full">
-            <h1>oi</h1>
+    return (
+        <div className="max-w-5xl mx-auto p-4    w-full">
+            <Formulario/>
         </div>
     );
-};
-
-
-export default Trancamento;
+}
+export default Matricula;
