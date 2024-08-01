@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
+import NavBar from './components/Navbar';
+import Home from './components/Home/Home'
+import Exclusao from './components/exclusao/Exclusao';
+import Trancamento from './components/Trancamento';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return(
+        <Router>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+                <NavBar/>
+                <div style={{ marginTop: '104px' }}></div> {/* Ajuste o valor conforme necessário */}
+                <Routes>
+                    <Route path="/" element = {<Home/>}/>
+                    <Route path="/exclusao" element = {<Exclusao/>} />
+                    <Route path="/trancamento" element = {<Trancamento/>} />
+                </Routes>
+            </div>
+        </Router>
+    )
 }
 
-export default App;
+export  default App;
+
