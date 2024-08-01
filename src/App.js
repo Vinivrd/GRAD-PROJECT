@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import NavBar from './components/Navbar';
 import Home from './components/Home/Home'
 import Exclusao from './components/exclusao/Exclusao';
-import Trancamento from './components/Trancamento';
+import Trancamento from './components/trancamento/Trancamento';
 
 const App = () => {
     return(

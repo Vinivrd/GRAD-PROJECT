@@ -33,7 +33,7 @@ const Formulario = () => {
   };
 
   return (
-   
+
     <div className="mx-auto max-w-2xl px-8 py-16 bg-white border-0 shadow-lg sm:rounded-3xl">
       <h1 className="text-2xl font-bold mb-8">Exclusão de disciplinas</h1>
       <form id="form" onSubmit={handleSubmit}>
@@ -162,22 +162,38 @@ const Formulario = () => {
           errorId="error-select_disciplinas"
           errorMessage="Você não selecionou a disciplina"
         />
+
         <RadioInput
-          label="Eu aceito os termos e condições de uso"
-          name="radio_termo"
+          label="Indique aqui a disciplina, caso ela não conste na lista"
+          name="radio_noCurso"
           options={[
-            { value: 'yes', label: 'Sim' }
+            { value: 'radio_noCurso', label: 'Indique aqui a disciplina, caso ela não conste na lista' }
           ]}
           onChange={handleChange}
-          errorId="error-radio_termo"
-          errorMessage="Você não aceitou os termos de uso"
+          errorId=""
+          errorMessage=""
         />
+
+         <RadioInput
+          label="Termo de aceitação"
+          name="radio_term"
+          options={[
+            { value: 'radio_term', label: 'Estou ciente de que este pedido será analisado e poderá ser indeferido, pois de acordo com o artigo 73 do Regimento Geral da USP, a carga horária mínima não poderá ser inferior a 12 créditos-aula semanais, excetuados os casos de matrículas para conclusão de curso e os de impedimento decorrente de reprovações em “disciplinas requisito”.' }
+          ]}
+          onChange={handleChange}
+          errorId=""
+          errorMessage=""
+        />
+
+
+
+
         <button type="submit" className="w-full px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 hover:shadow-lg focus:outline-none">
           Enviar
         </button>
       </form>
     </div>
-    
+
   );
 };
 

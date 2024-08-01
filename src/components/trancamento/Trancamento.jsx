@@ -2,11 +2,11 @@ import React,{useState} from "react";
 import emailjs from 'emailjs-com';
 import Formulario from "./Formulario";
 
-const Exlusao  =  () => {
+const Trancamento = () => {
     const [formData,setFormData] = useState({
         name:'',
-        email: '',
-        message: ''
+        email:'',
+        message:''
     })
 
     const handleChange = (e) => {
@@ -27,11 +27,13 @@ const Exlusao  =  () => {
             });
     };
 
-    return (
-        <div className="max-w-5xl mx-auto p-4    w-full">
-            <Formulario/>
+
+    return(
+        <div className="max-w-5xl mx-auto p-4 w-full">
+            <h1>oi</h1>
         </div>
     );
 };
 
-export default Exlusao;
+
+export default Trancamento;
