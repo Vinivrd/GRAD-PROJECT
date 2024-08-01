@@ -174,7 +174,7 @@ const Formulario = () => {
           errorMessage=""
         />
 
-         <RadioInput
+        <RadioInput
           label="Termo de aceitação"
           name="radio_term"
           options={[
@@ -187,9 +187,11 @@ const Formulario = () => {
 
 
 
-
-        <button type="submit" className="w-full px-6 py-3 mt-3 text-lg text-white transition-all duration-150 ease-linear rounded-lg shadow outline-none bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 hover:shadow-lg focus:outline-none">
-          Enviar
+        <button class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-900 to-blue-900 group-hover:from-cyan-900 group-hover:to-blue-900 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                type="submit">
+          <span class="text-lg w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            Enviar
+          </span>
         </button>
       </form>
     </div>

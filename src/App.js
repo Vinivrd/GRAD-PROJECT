@@ -5,7 +5,9 @@ import Home from './components/Home/Home'
 import Exclusao from './components/nav/exclusao/Exclusao';
 import Trancamento from './components/nav/trancamento/Trancamento';
 import Matricula from "./components/nav/matricula/Matricula";
+import TrancamentoTotal from "./components/nav/trancamentoTotal/TrancamentoTotal";
 
+//estou retornando as rotas
 const App = () => {
     return(
         <Router>
@@ -17,6 +19,7 @@ const App = () => {
                     <Route path="/exclusao" element = {<Exclusao/>} />
                     <Route path="/trancamento" element = {<Trancamento/>} />
                     <Route path="/matricula" element = {<Matricula/>} />
+                    <Route path="/trancamentoTotal" element = {<TrancamentoTotal/>} />
                 </Routes>
             </div>
         </Router>
