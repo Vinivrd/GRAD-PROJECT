@@ -10,8 +10,8 @@ const getCursos = async (req, res) => {
 };
 
 const createCursos = async (req, res) => {
-    const { name } = req.body;
-    const curso = new Cursos({ name });
+    const { name,tag } = req.body;
+    const curso = new Cursos({ name,tag });
     try {
         const newCurso = await curso.save();
         res.status(201).json(newCurso);

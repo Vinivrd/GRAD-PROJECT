@@ -1,5 +1,4 @@
 import React from 'react';
-import { prependListener } from '../../../../api/models/Cursos';
 
 const RadioInput = ({ label, name, options, onChange, errorId, errorMessage }) => (
   <fieldset className="relative z-0 w-full p-px mb-5">

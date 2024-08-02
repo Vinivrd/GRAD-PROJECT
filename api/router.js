@@ -16,9 +16,9 @@ router.post('/user',exclusaoControler.createUser);
 
 
 router.get('/cursos',cursos.getCursos);
-router.post('/cursos',cursos.createCursos);
+router.post('/cursos/create',cursos.createCursos);
 
-router.post('/upload',upload.single('file'),disciplinaControler.getDataPlanilha);
+router.post('/disciplinas/create',upload.single('file'),disciplinaControler.getDataPlanilha);
 router.get('/disciplinas/:id',disciplinaControler.findByCurso)
 
 module.exports = router;

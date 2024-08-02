@@ -4,17 +4,17 @@ const xlsx = require('xlsx');
 
 const getDataPlanilha = (req, res) => {
     const file = req.file;
-
+    
     if (!file) {
         return res.status(400).send('No file uploaded.');
     }
-
+    
     try {
         const workbook = xlsx.readFile(file.path);
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const data = xlsx.utils.sheet_to_json(worksheet);
-
+        
 
         Disciplina.insertMany(data)
             .then(() => {
@@ -29,13 +29,13 @@ const getDataPlanilha = (req, res) => {
 };
 
 
-const findByCurso = async (req, res) => {
-    try {
-        const dataDisciplina = await Disciplina.find({ Ref: req.params.id });
-        res.json({ dataDisciplina });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+const findByCurso = async (req,res) => {
+    try{
+        const dataDisciplina = await Disciplina.find({Ref: req.params.id});
+        res.json({dataDisciplina});
+    }catch(err){
+        res.status(500).json({message:err.message});
     }
 }
 
-module.exports = { getDataPlanilha, findByCurso };
+module.exports = { getDataPlanilha,findByCurso };
