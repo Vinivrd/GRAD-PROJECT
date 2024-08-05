@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import InputText from '../../Forms/InputText';
-import SelectInput from '../../Forms/InputText';
+import SelectInput from '../../Forms/SelectInput';
 import RadioInput from '../../Forms/RadioInput';
 import RadioBinario from '../../Forms/RadioBinario';
 import InputFile from '../../Forms/InputFile';
+import SelectInputCursos from '../../Forms/SelectInputCursos';
 
-const Formulario = () => {
+const Formulario = ({ cursos }) => {
     const [formData, setFormData] = useState({
         nome: '',
         num_usp: '',
@@ -67,16 +68,12 @@ const Formulario = () => {
                     errorId="error-email"
                     errorMessage="Você não digitou seu e-mail"
                 />
-                <SelectInput
+                <SelectInputCursos
                     label="Escolha seu curso"
                     name="select_curso"
                     value={formData.select_curso}
                     onChange={handleChange}
-                    options={[
-                        { value: 'curso1', label: 'Curso 1' },
-                        { value: 'curso2', label: 'Curso 2' }
-                        // Adicione mais cursos aqui
-                    ]}
+                    options={cursos}
                     errorId="error-select"
                     errorMessage="Você não selecionou um curso"
                 />
@@ -162,9 +159,9 @@ const Formulario = () => {
                     errorMessage="Você não  aceitou o termo."
                 />
 
-                <button class="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-900 to-blue-900 group-hover:from-cyan-900 group-hover:to-blue-900 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+                <button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-900 to-blue-900 group-hover:from-cyan-900 group-hover:to-blue-900 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                     type="submit">
-                    <span class="text-lg w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                    <span className="text-lg w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                         Enviar
                     </span>
                 </button>
