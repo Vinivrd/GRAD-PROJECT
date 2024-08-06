@@ -180,16 +180,6 @@ const Formulario = ({ cursos }) => {
                     errorMessage="Você não digitou a outra justificativa"
                 />
 
-                <SelectInputDisciplinas
-                    label="Selecione a disciplina que deseja excluir"
-                    name="select_displinas"
-                    value={formData.select_displinas}
-                    onChange={handleChange}
-                    options={disciplinas}
-                    errorId="error-select_disciplinas"
-                    errorMessage="Você não selecionou a disciplina"
-                />
-
                 <RadioInput
                     label="Termo de aceitação"
                     name="radio_term"

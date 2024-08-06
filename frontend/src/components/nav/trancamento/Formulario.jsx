@@ -1,13 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import InputText from '../../Forms/InputText';
 import SelectInput from '../../Forms/SelectInput';
 import RadioInput from '../../Forms/RadioInput';
-import SelectInputCursos from "../../Forms/SelectInputCursos";
-import SelectInputDisciplinas from "../../Forms/SelectInputDisciplinas";
+import SelectInputCursos from '../../Forms/SelectInputCursos';
+import SelectInputDisciplinas from '../../Forms/SelectInputDisciplinas';
+import RadioBinario from '../../Forms/RadioBinario';
 
 import getDados from "../../../util/getDados";
 
-const Formulario = ({cursos}) => {
+const Formulario = ({ cursos }) => {
 
   const [cursoSelect, setCursoSelect] = useState();
   const [disciplinas, setDisciplinas] = useState([]);
@@ -38,8 +39,10 @@ const Formulario = ({cursos}) => {
     just_exclusao: '',
     outros_justificativa: '',
     select_displinas: '',
-    radio_noCurso: '',
-    radio_term: ''
+    radio_termo: '',
+    codigo_discplina_noCurso: '',
+    nome_discplina_noCurso: '',
+    cred_discplina_noCurso: ''
   });
 
   const handleChangeCurso = (e) => {
@@ -56,11 +59,22 @@ const Formulario = ({cursos}) => {
       [e.target.name]: e.target.value
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process form data
   };
+
+  const [activeNoCurso, setActiveNoCurso] = useState(false);
+  const handleNoCurso = (e) => {
+    if (e.target.value === "1") {
+      setActiveNoCurso(false)
+      return
+    } else {
+      setActiveNoCurso(true)
+      return
+    }
+  }
 
   return (
 
@@ -93,7 +107,7 @@ const Formulario = ({cursos}) => {
           errorId="error-email"
           errorMessage="Você não digitou seu e-mail"
         />
-        
+
         <SelectInputCursos
           label="Escolha seu curso"
           name="select_curso"
@@ -169,6 +183,7 @@ const Formulario = ({cursos}) => {
           errorId="error-just_exclusão"
           errorMessage="Você não digitou a justificativa"
         />
+
         {formData.just_exclusao === '4' && (
           <InputText
             label="Outra justificativa"
@@ -188,6 +203,55 @@ const Formulario = ({cursos}) => {
           errorId="error-select_disciplinas"
           errorMessage="Você não selecionou a disciplina"
         />
+        <RadioBinario
+          textoPrincipal="Sua disciplina está na lista?"
+          name="radio_noCurso"
+          id="radio_noCurso"
+          idError="radio_noCurso_Error"
+          onChange={handleNoCurso}
+          label="Sim"
+          label2="Não"
+        />
+
+        {activeNoCurso && (
+          <div className='flex flex-row space-x-4 transition-opacity duration-500 ease-in-out'>
+            <InputText
+              label="Código"
+              name="codigo_discplina_noCurso"
+              type="text"
+              placeholder="asfa"
+              value={formData.codigo_discplina_noCurso}
+              onChange={handleChange}
+              maxlength="7"
+              errorId="error_cod_noCurso"
+              errorMessage="Você não digitou o código da disciplina "
+            />
+
+            <InputText
+              label="Nome disciplina"
+              name="nome_discplina_noCurso"
+              type="text"
+              placeholder=" "
+              value={formData.nome_discplina_noCurso}
+              onChange={handleChange}
+              errorId="error_nome_noCurso"
+              errorMessage="Você não digitou o nome da disciplina "
+            />
+
+            <InputText
+              label="Créditos-aula"
+              value={formData.cred_discplina_noCurso}
+              name="cred_discplina_noCurso"
+              pattern="[0-9]{4}"
+              maxlength="2"
+              onChange={handleChange}
+              errorId="error_cred_noCurso"
+              errorMessage="Você não digitou o crédito da disciplina"
+            />
+
+          </div>
+        )}
+
 
         <RadioInput
           label="Indique aqui a disciplina, caso ela não conste na lista"

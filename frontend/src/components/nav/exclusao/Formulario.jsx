@@ -66,18 +66,15 @@ const Formulario = ({ cursos }) => {
   const handleNoCurso = (e) => {
     if (e.target.value === "1") {
       setActiveNoCurso(false)
-      console.log(activeNoCurso)
       return
     } else {
       setActiveNoCurso(true)
-      console.log(activeNoCurso)
       return
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Process form data
   };
 
 
@@ -251,7 +248,7 @@ const Formulario = ({ cursos }) => {
               value={formData.cred_discplina_noCurso}
               name="cred_discplina_noCurso"
               pattern="[0-9]{4}"
-              maxlength = "2"
+              maxlength="2"
               onChange={handleChange}
               errorId="error_cred_noCurso"
               errorMessage="Você não digitou o crédito da disciplina"

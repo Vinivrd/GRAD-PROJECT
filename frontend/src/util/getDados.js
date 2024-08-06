@@ -21,6 +21,8 @@ const getDisciplinas = async(cod) => {
 }
 
 
-export default {getCursos,getDisciplinas};
+const apiUtils = { getCursos, getDisciplinas };
+
+export default apiUtils;
 
 

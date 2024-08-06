@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import InputText from '../../Forms/InputText';
-import SelectInput from '../../Forms/SelectInput';
 import RadioInput from '../../Forms/RadioInput';
 import RadioBinario from '../../Forms/RadioBinario';
 import InputFile from '../../Forms/InputFile';
