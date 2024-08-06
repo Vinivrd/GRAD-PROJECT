@@ -4,6 +4,7 @@ import SelectInput from '../../Forms/SelectInput';
 import RadioInput from '../../Forms/RadioInput';
 import SelectInputCursos from '../../Forms/SelectInputCursos';
 import SelectInputDisciplinas from '../../Forms/SelectInputDisciplinas';
+import RadioBinario from '../../Forms/RadioBinario';
 
 import getDados from "../../../util/getDados";
 
@@ -21,11 +22,9 @@ const Formulario = ({ cursos }) => {
         console.error(err);
       }
     };
-    
+
     fetchDisciplina();
   }, [cursoSelect]);
-
-
 
   const [formData, setFormData] = useState({
     nome: '',
@@ -40,7 +39,10 @@ const Formulario = ({ cursos }) => {
     just_exclusao: '',
     outros_justificativa: '',
     select_displinas: '',
-    radio_termo: ''
+    radio_termo: '',
+    codigo_discplina_noCurso: '',
+    nome_discplina_noCurso: '',
+    cred_discplina_noCurso: ''
   });
 
 
@@ -60,10 +62,25 @@ const Formulario = ({ cursos }) => {
     });
   };
 
+  const [activeNoCurso, setActiveNoCurso] = useState(false);
+  const handleNoCurso = (e) => {
+    if (e.target.value === "1") {
+      setActiveNoCurso(false)
+      console.log(activeNoCurso)
+      return
+    } else {
+      setActiveNoCurso(true)
+      console.log(activeNoCurso)
+      return
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Process form data
   };
+
+
 
 
   return (
@@ -83,6 +100,7 @@ const Formulario = ({ cursos }) => {
           label="Número USP"
           name="num_usp"
           pattern="[0-9]{8}"
+          maxlength="8"
           value={formData.num_usp}
           onChange={handleChange}
           errorId="error-num_usp"
@@ -173,14 +191,16 @@ const Formulario = ({ cursos }) => {
           errorId="error-just_exclusão"
           errorMessage="Você não digitou a justificativa"
         />
-        <InputText
-          label="Outra justificativa"
-          name="outros_justificativa"
-          value={formData.outros_justificativa}
-          onChange={handleChange}
-          errorId="error-outros_justificativa"
-          errorMessage="Você não digitou a outra justificativa"
-        />
+        {formData.just_exclusao === '4' && (
+          <InputText
+            label="Outra justificativa"
+            name="outros_justificativa"
+            value={formData.outros_justificativa}
+            onChange={handleChange}
+            errorId="error-outros_justificativa"
+            errorMessage="Você não digitou a outra justificativa"
+          />
+        )}
         <SelectInputDisciplinas
           label="Selecione a disciplina que deseja excluir"
           name="select_displinas"
@@ -191,16 +211,54 @@ const Formulario = ({ cursos }) => {
           errorMessage="Você não selecionou a disciplina"
         />
 
-        <RadioInput
-          label="Indique aqui a disciplina, caso ela não conste na lista"
+        <RadioBinario
+          textoPrincipal="Sua disciplina está na lista de disciplinas?"
           name="radio_noCurso"
-          options={[
-            { value: 'radio_noCurso', label: 'Indique aqui a disciplina, caso ela não conste na lista' }
-          ]}
-          onChange={handleChange}
-          errorId=""
-          errorMessage=""
+          id="radio_noCurso"
+          idError="radio_noCurso_Error"
+          onChange={handleNoCurso}
+          label="Sim"
+          label2="Não"
         />
+
+        {activeNoCurso && (
+          <div className='flex flex-row space-x-4 transition-opacity duration-500 ease-in-out'>
+            <InputText
+              label="Código"
+              name="codigo_discplina_noCurso"
+              type="text"
+              placeholder="asfa"
+              value={formData.codigo_discplina_noCurso}
+              onChange={handleChange}
+              maxlength="7"
+              errorId="error_cod_noCurso"
+              errorMessage="Você não digitou o código da disciplina "
+            />
+
+            <InputText
+              label="Nome disciplina"
+              name="nome_discplina_noCurso"
+              type="text"
+              placeholder=" "
+              value={formData.nome_discplina_noCurso}
+              onChange={handleChange}
+              errorId="error_nome_noCurso"
+              errorMessage="Você não digitou o nome da disciplina "
+            />
+
+            <InputText
+              label="Créditos-aula"
+              value={formData.cred_discplina_noCurso}
+              name="cred_discplina_noCurso"
+              pattern="[0-9]{4}"
+              maxlength = "2"
+              onChange={handleChange}
+              errorId="error_cred_noCurso"
+              errorMessage="Você não digitou o crédito da disciplina"
+            />
+
+          </div>
+        )}
 
         <RadioInput
           label="Termo de aceitação"

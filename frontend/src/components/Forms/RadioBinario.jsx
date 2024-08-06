@@ -1,6 +1,6 @@
 import React from "react";
 
-const RadioBinario = ({textoPrincipal,name,id,idError,label,label2}) => {
+const RadioBinario = ({textoPrincipal,name,id,idError,label,label2,onChange}) => {
     return(
       <div>
         <p className="text-gray-500">{textoPrincipal}</p>
@@ -12,6 +12,7 @@ const RadioBinario = ({textoPrincipal,name,id,idError,label,label2}) => {
                   value="1"
                   id = {id}
                   className=" mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
+                  onChange={onChange}
                 />
                 <label for={name} id={idError} className="text-gray-800 text-2sm font-normal">{label}</label>
               </div>
@@ -23,6 +24,7 @@ const RadioBinario = ({textoPrincipal,name,id,idError,label,label2}) => {
                   value="2"
                   id = {id}
                   className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
+                  onChange={onChange}
                 />
                 <label for={name} id={idError} className="text-gray-800 text-2sm font-normal">{label2}</label>
               </div>

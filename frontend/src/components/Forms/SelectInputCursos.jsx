@@ -6,7 +6,7 @@ const SelectInputCursos = ({ label, name, options, onChange, value, errorId, err
       name={name}
       value={value}
       onChange={onChange}
-      className="pt-5 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-blue-600 border-gray-200"
+      className="pt-5 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 border-gray-200"
     >
       <option value="" selected disabled hidden></option>
       {options.map((option, index) => (

@@ -169,14 +169,16 @@ const Formulario = ({cursos}) => {
           errorId="error-just_exclusão"
           errorMessage="Você não digitou a justificativa"
         />
-        <InputText
-          label="Outra justificativa"
-          name="outros_justificativa"
-          value={formData.outros_justificativa}
-          onChange={handleChange}
-          errorId="error-outros_justificativa"
-          errorMessage="Você não digitou a outra justificativa"
-        />
+        {formData.just_exclusao === '4' && (
+          <InputText
+            label="Outra justificativa"
+            name="outros_justificativa"
+            value={formData.outros_justificativa}
+            onChange={handleChange}
+            errorId="error-outros_justificativa"
+            errorMessage="Você não digitou a outra justificativa"
+          />
+        )}
         <SelectInputDisciplinas
           label="Selecione a disciplina que deseja excluir"
           name="select_displinas"
