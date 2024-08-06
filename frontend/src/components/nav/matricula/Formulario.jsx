@@ -51,7 +51,7 @@ const Formulario = ({ cursos }) => {
         });
         setCursoSelect(e.target.value)
     }
-
+    //oi
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -193,6 +193,7 @@ const Formulario = ({ cursos }) => {
 
                 <button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-900 to-blue-900 group-hover:from-cyan-900 group-hover:to-blue-900 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
                     type="submit">
+                    
                     <span className="text-lg w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                         Enviar
                     </span>
