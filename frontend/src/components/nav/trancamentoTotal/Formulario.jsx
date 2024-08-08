@@ -5,6 +5,12 @@ import RadioBinario from '../../Forms/RadioBinario';
 import InputFile from '../../Forms/InputFile';
 import SelectInputCursos from '../../Forms/SelectInputCursos';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import {handleChangeCurso,handleChange} from '../../../util/hooks'
+import { checkErrors } from '../../../util/utils';
+
 const Formulario = ({ cursos }) => {
     const [formData, setFormData] = useState({
         nome: '',
@@ -13,6 +19,7 @@ const Formulario = ({ cursos }) => {
         select_curso: '',
         ano_ingresso: '',
         telefone: '',
+        cred_momento:'',
         ano_termino: '',
         select_semestre: '',
         tot_creditos: '',
@@ -22,17 +29,14 @@ const Formulario = ({ cursos }) => {
         radio_termo: ''
     });
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Process form data
+        checkErrors(formData)
     };
+
+    
+    const [cursoSelect, setCursoSelect] = useState();
 
     return (
 
@@ -42,65 +46,72 @@ const Formulario = ({ cursos }) => {
             </h1>
             <form id="form" onSubmit={handleSubmit}>
                 <InputText
+                    id = "nome"
                     label="Nome completo"
                     name="nome"
                     value={formData.nome}
-                    onChange={handleChange}
-                    errorId="error-name"
+                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    errorId="error-nome"
                     errorMessage="Você não digitou seu nome"
                 />
                 <InputText
+                    id = "num_usp"
                     label="Número USP"
                     name="num_usp"
                     pattern="[0-9]{8}"
                     value={formData.num_usp}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-num_usp"
                     errorMessage="Você não digitou seu número USP"
                 />
                 <InputText
+                    id = "email"
                     label="E-mail"
                     type="email"
                     name="email"
                     value={formData.email}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-email"
                     errorMessage="Você não digitou seu e-mail"
                 />
                 <SelectInputCursos
+                    id = "select_curso"
                     label="Escolha seu curso"
                     name="select_curso"
                     value={formData.select_curso}
-                    onChange={handleChange}
+                    onChange={(e) => handleChangeCurso(e,setCursoSelect,setFormData,formData)}
                     options={cursos}
-                    errorId="error-select"
+                    errorId="error-select_curso"
                     errorMessage="Você não selecionou um curso"
                 />
                 <InputText
+                    id = "ano_ingresso"
                     label="Ano de ingresso"
                     name="ano_ingresso"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-ano_ingresso"
                     errorMessage="Você não digitou seu ano de ingresso"
                 />
                 <InputText
+                    id = "telefone"
                     label="Telefone (DDD número)"
                     type="tel"
                     name="telefone"
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     value={formData.telefone}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-telefone"
                     errorMessage="Você não digitou seu telefone"
                 />
                 <InputText
+                    id = "cred_momento"
                     label="Número total de créditos cumprido até o momento"
                     name="cred_momento"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-cred_momento"
                     errorMessage="Você não digitou seus créditos cumpridos até o momento"
                 />
@@ -126,11 +137,12 @@ const Formulario = ({ cursos }) => {
                 <h1>Indique o semestre que pretende trancar* arrumar</h1>
 
                 <InputText
+                    id = "justificativa"
                     label="Justificativa"
                     name="justificativa"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-justificativa"
                     errorMessage="Você não digitou a justificativa"
                 />
@@ -148,18 +160,19 @@ const Formulario = ({ cursos }) => {
                 />
 
                 <RadioInput
+                    id = "radio_term"
                     label="Termo de aceitação"
                     name="radio_term"
                     options={[
                         { value: 'radio_term', label: 'Estou ciente de que, de acordo com com o artigo 2º da Resolução CoG nº 3761/1990, o trancamento não será efetuado se eu não tiver, pelo menos, 24 créditos cumpridos até o momento e se eu já estiver reprovado por faltas em disciplinas cuja soma de créditos ultrapasse 25% do total de créditos em que estou matriculado neste semestre.' }
                     ]}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e,setFormData,formData)}
                     errorId="error-radio_term"
                     errorMessage="Você não  aceitou o termo."
                 />
 
                 <button className="w-full relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-900 to-blue-900 group-hover:from-cyan-900 group-hover:to-blue-900 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-                    type="submit">
+                    type="submit" onClick={handleSubmit}>
                     <span className="text-lg w-full relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                         Enviar
                     </span>

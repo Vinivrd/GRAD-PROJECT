@@ -40,7 +40,7 @@ function showError(errorElement, input) {
 
 
 export const checkErrors = (formData) => {
-    const noErrorList = ['outros_justificativa', 'radio_termo', 'codigo_discplina_noCurso', 'nome_discplina_noCurso', 'cred_discplina_noCurso', 'just_menosCredito', 'radio_noCurso', 'radio_term'];
+    const noErrorList = ['outros_justificativa', 'codigo_discplina_noCurso', 'nome_discplina_noCurso', 'cred_discplina_noCurso', 'just_menosCredito', 'radio_noCurso'];
     for (const key in formData) {
         if (formData[key] === '' && !noErrorList.includes(key)) {
             const errorElement = document.getElementById(`error-${key}`);
@@ -48,7 +48,6 @@ export const checkErrors = (formData) => {
             if (errorElement && input) {
                 showError(errorElement, input);
             }
-            console.log(`O campo ${key} está vazio.`);
         } else {
             const errorElement = document.getElementById(`error-${key}`);
             const input = document.getElementById(`${key}id`);

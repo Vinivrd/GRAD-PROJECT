@@ -16,7 +16,7 @@ const InputText = ({label, name, type = "text", pattern, placeholder, onChange, 
                 maxLength = {maxlength}
             />
             <label htmlFor={name} className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">{label}</label>
-            <span className="text-sm text-red-600 hidden FADE" id={errorId}>{errorMessage}</span>
+            <span className="text-sm text-red-600 hidden" id={errorId}>{errorMessage}</span>
         </div>
     ); 
 }

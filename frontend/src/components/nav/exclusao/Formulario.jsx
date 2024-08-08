@@ -9,10 +9,10 @@ import RadioBinario from '../../Forms/RadioBinario';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {handleChangeCurso,handleChange,handleNoCurso} from './hooks'
+import {handleChangeCurso,handleChange,handleNoCurso} from '../../../util/hooks'
+import { calCreditos, checkErrors } from '../../../util/utils';
 
 import getDados from "../../../util/getDados";
-import { calCreditos, checkErrors } from './hooks/utils';
 import axios from 'axios';
 
 const Formulario = ({ cursos }) => {
@@ -63,7 +63,7 @@ const Formulario = ({ cursos }) => {
   
   const handleSubmit = async(e) => {
     e.preventDefault(); 
-    checkErrors(formData)
+    checkErrors(formData);
     console.log(formData);
 
     try{

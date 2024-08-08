@@ -1,36 +1,37 @@
 import React from "react";
 
-const RadioBinario = ({textoPrincipal,name,id,idError,label,label2,onChange}) => {
-    return(
-      <div>
-        <p className="text-gray-500">{textoPrincipal}</p>
-        <div className="flex mb-4 space-x-1 pt-5 pb-2 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 border-gray-200">
-              <div className="block">
-                <input
-                  type="radio"
-                  name={name}
-                  value="1"
-                  id={name+"id"}
-                  className=" mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
-                  onChange={onChange}
-                />
-                <label for={name} id={idError} className="text-gray-800 text-2sm font-normal">{label}</label>
-              </div>
+const RadioBinario = ({ textoPrincipal, name, id1, id2, idError, label, label2, onChange }) => {
+  return (
+    <div>
+      <p className="text-gray-500">{textoPrincipal}</p>
+      <div className="flex mb-4 space-x-1 pt-5 pb-2 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 border-gray-200">
+        <div className="block">
+          <input
+            type="radio"
+            name={name}
+            value="1"
+            id={id1}
+            className="mr-2 text-black border-2 border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            onChange={onChange}
+          />
+          <label htmlFor={id1} className="text-gray-800 text-sm font-normal">{label}</label>
+        </div>
 
-              <div className="block">
-                <input
-                  type="radio"
-                  name={name}
-                  value="2"
-                  id = {id}
-                  className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
-                  onChange={onChange}
-                />
-                <label for={name} id={idError} className="text-gray-800 text-2sm font-normal">{label2}</label>
-              </div>
-            </div>
+        <div className="block">
+          <input
+            type="radio"
+            name={name}
+            value="2"
+            id={id2}
+            className="mr-2 text-black border-2 border-gray-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            onChange={onChange}
+          />
+          <label htmlFor={id2} className="text-gray-800 text-sm font-normal">{label2}</label>
+        </div>
       </div>
-    );
+      <span className="text-sm text-red-600 hidden" id={idError}></span>
+    </div>
+  );
 };
 
 export default RadioBinario;

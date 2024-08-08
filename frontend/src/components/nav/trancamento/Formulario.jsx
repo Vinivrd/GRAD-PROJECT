@@ -6,10 +6,10 @@ import SelectInputCursos from '../../Forms/SelectInputCursos';
 import SelectInputDisciplinas from '../../Forms/SelectInputDisciplinas';
 import RadioBinario from '../../Forms/RadioBinario';
 
-import {handleChangeCurso,handleChange,handleNoCurso} from '../exclusao/hooks'
+import {handleChangeCurso,handleChange,handleNoCurso} from '../../../util/hooks'
 
 import getDados from "../../../util/getDados";
-import { calCreditos, checkErrors } from '../exclusao/hooks/utils';
+import { calCreditos, checkErrors } from '../../../util/utils';
 
 const Formulario = ({ cursos }) => {
 
@@ -58,15 +58,15 @@ const Formulario = ({ cursos }) => {
   },[formData.select_displinas]);
   
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(formData)
     checkErrors(formData)
-    //e.preventDefault();
   };
   
   return (
     
     <div className="mx-auto max-w-2xl px-8 py-16 bg-white border-0 shadow-lg sm:rounded-3xl">
-      <h1 className="text-2xl font-bold mb-8">Exclusão de disciplinas</h1>
+      <h1 className="text-2xl font-bold mb-8">Trancamento de disciplinas</h1>
       <form id="form" onSubmit={handleSubmit}>
         <InputText
           id="nome"
