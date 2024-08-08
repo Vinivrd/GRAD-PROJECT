@@ -3,6 +3,7 @@ import React from 'react';
 const SelectInputDisciplinas = ({ label, name, options, onChange, value, errorId, errorMessage }) => (
   <div className="relative z-0 w-full mb-5">
     <select
+      id={name+"id"}
       name={name}
       value={value}
       onChange={onChange}
@@ -10,7 +11,7 @@ const SelectInputDisciplinas = ({ label, name, options, onChange, value, errorId
     >
       <option value="" selected disabled hidden></option>
       {options.map((option, index) => (
-        <option key={index} value={`disciplina${index}`} className={`select-${name}-${index}`}>
+        <option key={index} value={`${option.Nome}-${option.Disciplina}-${option.CreditosAula}`} className={`select-${name}-${index}`}>
           {`${option.Nome}-${option.Disciplina}-${option.CreditosAula}`}
         </option>
       ))}

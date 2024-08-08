@@ -10,7 +10,7 @@ const RadioBinario = ({textoPrincipal,name,id,idError,label,label2,onChange}) =>
                   type="radio"
                   name={name}
                   value="1"
-                  id = {id}
+                  id={name+"id"}
                   className=" mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                   onChange={onChange}
                 />

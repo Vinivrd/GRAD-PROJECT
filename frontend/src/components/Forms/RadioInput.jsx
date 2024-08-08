@@ -7,7 +7,7 @@ const RadioInput = ({ label, name, options, onChange, errorId, errorMessage }) =
       <div key={index} className="block pt-5 pb-2">
         <input
           type="radio"
-          id={`${name}-${index}`} // Adiciona um ID único para cada radio button
+          id={name+"id"} // Adiciona um ID único para cada radio button
           name={name}
           value={option.value}
           onChange={onChange}

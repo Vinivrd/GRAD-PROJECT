@@ -40,7 +40,6 @@ const Formulario = ({ cursos }) => {
                 console.error(err);
             }
         };
-
         fetchDisciplina();
     }, [cursoSelect]);
 

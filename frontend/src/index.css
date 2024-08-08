@@ -21,6 +21,22 @@ body {
     padding-top: 64px;
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
 #botao {
     display: inline-block;
     padding: 10px 20px;

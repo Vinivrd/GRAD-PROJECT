@@ -3,6 +3,7 @@ import React from 'react';
 const SelectInputCursos = ({ label, name, options, onChange, value, errorId, errorMessage }) => (
   <div className="relative z-0 w-full mb-5">
     <select
+      id={name+"id"}
       name={name}
       value={value}
       onChange={onChange}
