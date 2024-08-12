@@ -4,11 +4,17 @@ import RadioInput from '../../Forms/RadioInput';
 import RadioBinario from '../../Forms/RadioBinario';
 import InputFile from '../../Forms/InputFile';
 import SelectInputCursos from '../../Forms/SelectInputCursos';
+import SelectInput from '../../Forms/SelectInput';
+
+
+import { FaRegTrashAlt } from "react-icons/fa";
+
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {handleChangeCurso,handleChange} from '../../../util/hooks'
+import { handleChangeCurso, handleChange } from '../../../util/hooks'
+import {handleChangeMatricula,deleteDivTermino} from './util'
 import { checkErrors } from '../../../util/utils';
 
 const Formulario = ({ cursos }) => {
@@ -19,9 +25,15 @@ const Formulario = ({ cursos }) => {
         select_curso: '',
         ano_ingresso: '',
         telefone: '',
-        cred_momento:'',
+        cred_momento: '',
         ano_termino: '',
         select_semestre: '',
+        ano_termino2: '',
+        select_semestre2: '',
+        ano_termino3: '',
+        select_semestre3: '',
+        ano_termino4: '',
+        select_semestre4: '',
         tot_creditos: '',
         just_exclusao: '',
         outros_justificativa: '',
@@ -29,13 +41,14 @@ const Formulario = ({ cursos }) => {
         radio_termo: ''
     });
 
+    const [terminoDiv, setTerminoDiv] = useState([false, false, false]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         checkErrors(formData)
     };
 
-    
+
     const [cursoSelect, setCursoSelect] = useState();
 
     return (
@@ -46,72 +59,72 @@ const Formulario = ({ cursos }) => {
             </h1>
             <form id="form" onSubmit={handleSubmit}>
                 <InputText
-                    id = "nome"
+                    id="nome"
                     label="Nome completo"
                     name="nome"
                     value={formData.nome}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-nome"
                     errorMessage="Você não digitou seu nome"
                 />
                 <InputText
-                    id = "num_usp"
+                    id="num_usp"
                     label="Número USP"
                     name="num_usp"
                     pattern="[0-9]{8}"
                     value={formData.num_usp}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-num_usp"
                     errorMessage="Você não digitou seu número USP"
                 />
                 <InputText
-                    id = "email"
+                    id="email"
                     label="E-mail"
                     type="email"
                     name="email"
                     value={formData.email}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-email"
                     errorMessage="Você não digitou seu e-mail"
                 />
                 <SelectInputCursos
-                    id = "select_curso"
+                    id="select_curso"
                     label="Escolha seu curso"
                     name="select_curso"
                     value={formData.select_curso}
-                    onChange={(e) => handleChangeCurso(e,setCursoSelect,setFormData,formData)}
+                    onChange={(e) => handleChangeCurso(e, setCursoSelect, setFormData, formData)}
                     options={cursos}
                     errorId="error-select_curso"
                     errorMessage="Você não selecionou um curso"
                 />
                 <InputText
-                    id = "ano_ingresso"
+                    id="ano_ingresso"
                     label="Ano de ingresso"
                     name="ano_ingresso"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-ano_ingresso"
                     errorMessage="Você não digitou seu ano de ingresso"
                 />
                 <InputText
-                    id = "telefone"
+                    id="telefone"
                     label="Telefone (DDD número)"
                     type="tel"
                     name="telefone"
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     value={formData.telefone}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-telefone"
                     errorMessage="Você não digitou seu telefone"
                 />
                 <InputText
-                    id = "cred_momento"
+                    id="cred_momento"
                     label="Número total de créditos cumprido até o momento"
                     name="cred_momento"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-cred_momento"
                     errorMessage="Você não digitou seus créditos cumpridos até o momento"
                 />
@@ -134,15 +147,141 @@ const Formulario = ({ cursos }) => {
                     label2="Não"
                 />
 
-                <h1>Indique o semestre que pretende trancar* arrumar</h1>
+                <div >
+                    <div className="flex flex-row space-x-4">
+                        <InputText
+                            id="ano_termino"
+                            label="Previsão de ano de término do curso"
+                            name="ano_termino"
+                            pattern="[0-9]{4}"
+                            value={formData.ano_termino}
+                            onChange={(e) => handleChange(e, setFormData, formData)}
+                            errorId="error-ano_termino"
+                            errorMessage="Você não digitou seu ano do término"
+                        />
+                        <SelectInput
+                            id="select_semestre"
+                            label="Semestre"
+                            name="select_semestre"
+                            value={formData.select_semestre}
+                            onChange={(e) => handleChangeMatricula(e, setFormData, formData, setTerminoDiv, 0)}
+                            options={[
+                                { value: '1', label: '1° semestre' },
+                                { value: '2', label: '2° semestre' }
+                            ]}
+                            errorId="error-select_semestre"
+                            errorMessage="Você não selecionou o semestre de término"
+                        />
+                    </div>
+                    
+
+                    {terminoDiv[0] && (
+                        <div className="flex flex-row space-x-4 ">
+                            <InputText
+                                id="ano_termino2"
+                                label="Previsão de ano de término do curso"
+                                name="ano_termino2"
+                                pattern="[0-9]{4}"
+                                value={formData.ano_termino2}
+                                onChange={(e) => handleChange(e, setFormData, formData)}
+                                errorId="error-ano_termino2"
+                                errorMessage="Você não digitou seu ano do término"
+                            />
+                    
+                            <SelectInput
+                                id="select_semestre2"
+                                label="Semestre"
+                                name="select_semestre2"
+                                value={formData.select_semestre2}
+                                onChange={(e) => handleChangeMatricula(e, setFormData, formData, setTerminoDiv, 1)}
+                                options={[
+                                    { value: '1', label: '1° semestre' },
+                                    { value: '2', label: '2° semestre' }
+                                ]}
+                                errorId="error-select_semestre"
+                                errorMessage="Você não selecionou o semestre de término"
+                            />
+                            <div className='flex items-center justify-center text-blue-600 text-xl hover:text-blue-400 cursor-pointer' onClick={() => deleteDivTermino(setTerminoDiv,0)}>
+                                <FaRegTrashAlt />
+                            </div>
+                            
+                        </div>
+                    )}
+
+                    {terminoDiv[1] && (
+                        <div className="flex flex-row space-x-4">
+                            <InputText
+                                id="ano_termino3"
+                                label="Previsão de ano de término do curso"
+                                name="ano_termino3"
+                                pattern="[0-9]{4}"
+                                value={formData.ano_termino3}
+                                onChange={(e) => handleChange(e, setFormData, formData)}
+                                errorId="error-ano_termino3"
+                                errorMessage="Você não digitou seu ano do término"
+                            />
+                            <SelectInput
+                                id="select_semestre3"
+                                label="Semestre"
+                                name="select_semestre3"
+                                value={formData.select_semestre3}
+                                onChange={(e) => handleChangeMatricula(e, setFormData, formData, setTerminoDiv, 2)}
+                                options={[
+                                    { value: '1', label: '1° semestre' },
+                                    { value: '2', label: '2° semestre' }
+                                ]}
+                                errorId="error-select_semestre3"
+                                errorMessage="Você não selecionou o semestre de término"
+                            />
+                            <div className='flex items-center justify-center text-blue-600 text-xl hover:text-blue-400 cursor-pointer' onClick={() => deleteDivTermino(setTerminoDiv,1)}>
+                                <FaRegTrashAlt />
+                            </div>
+                        </div>
+                    )}
+
+                    {terminoDiv[2] && (
+                        <div className="flex flex-row space-x-4">
+                            <InputText
+                                id="ano_termino4"
+                                label="Previsão de ano de término do curso"
+                                name="ano_termino4"
+                                pattern="[0-9]{4}"
+                                value={formData.ano_termino4}
+                                onChange={(e) => handleChange(e, setFormData, formData)}
+                                errorId="error-ano_termino4"
+                                errorMessage="Você não digitou seu ano do término"
+                            />
+                            <SelectInput
+                                id="select_semestre4"
+                                label="Semestre"
+                                name="select_semestre4"
+                                value={formData.select_semestre4}
+                                onChange={(e) => handleChange(e, setFormData, formData)}
+                                options={[
+                                    { value: '1', label: '1° semestre' },
+                                    { value: '2', label: '2° semestre' }
+                                ]}
+                                errorId="error-select_semestre4"
+                                errorMessage="Você não selecionou o semestre de término"
+                            />
+
+                            <div className='flex items-center justify-center text-blue-600 text-xl hover:text-blue-400 cursor-pointer' onClick={() => deleteDivTermino(setTerminoDiv,2)}>
+                                <FaRegTrashAlt />
+                            </div>
+                        </div>
+                    )}
+
+
+
+                </div>
 
                 <InputText
-                    id = "justificativa"
+                    id="justificativa"
                     label="Justificativa"
                     name="justificativa"
                     pattern="[0-9]{4}"
                     value={formData.ano_ingresso}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-justificativa"
                     errorMessage="Você não digitou a justificativa"
                 />
@@ -160,13 +299,13 @@ const Formulario = ({ cursos }) => {
                 />
 
                 <RadioInput
-                    id = "radio_term"
+                    id="radio_term"
                     label="Termo de aceitação"
                     name="radio_term"
                     options={[
                         { value: 'radio_term', label: 'Estou ciente de que, de acordo com com o artigo 2º da Resolução CoG nº 3761/1990, o trancamento não será efetuado se eu não tiver, pelo menos, 24 créditos cumpridos até o momento e se eu já estiver reprovado por faltas em disciplinas cuja soma de créditos ultrapasse 25% do total de créditos em que estou matriculado neste semestre.' }
                     ]}
-                    onChange={(e) => handleChange(e,setFormData,formData)}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
                     errorId="error-radio_term"
                     errorMessage="Você não  aceitou o termo."
                 />

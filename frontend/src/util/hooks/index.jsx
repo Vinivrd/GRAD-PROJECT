@@ -12,6 +12,7 @@ export const handleChange = (e,setFormData,formData) => {
         [e.target.name]: e.target.value
     });
 };
+
 export const handleNoCurso = (e,setActiveNoCurso) => {
     if (e.target.value === "1") {
         setActiveNoCurso(false)
@@ -20,6 +21,10 @@ export const handleNoCurso = (e,setActiveNoCurso) => {
         setActiveNoCurso(true)
         return
     }
+}
+
+export const handleMenuActive = (activeMenu, setActiveMenu) => {
+    setActiveMenu(!activeMenu);
 }
 
 
