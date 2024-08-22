@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  front:
+    build:
+      context: ./front
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+  api:
+    build:
+      context: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
