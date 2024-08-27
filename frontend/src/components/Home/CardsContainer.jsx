@@ -35,7 +35,7 @@ const cardData = [
 
 const CardsContainer = () => {
     return (
-        <div className="flex flex-col lg:flex-row lg:space-x-4 mt-8 lg:mt-16 px-4 lg:px-0">
+        <div className="flex flex-col lg:flex-row lg:space-x-4 mt-8 lg:mt-16 px-4 lg:px-0 items-center lg:items-start">
             {cardData.map((card, index) => (
                 <Card
                     key={index}
@@ -47,5 +47,6 @@ const CardsContainer = () => {
         </div>
     );
 };
+
 
 export default CardsContainer;

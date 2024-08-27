@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:22
 
 WORKDIR /app
 
@@ -10,8 +10,8 @@ RUN npm install
 # Copia o restante dos arquivos da aplicação
 COPY . ./
 
-# Exponha a porta usada pelo Node.js (geralmente 3000)
-EXPOSE 3000
+# Exponha a porta usada pelo Node.js (geralmente 3001)
+EXPOSE 5000
 
 # Comando para iniciar a aplicação Node.js em modo de desenvolvimento
 CMD ["npm", "run", "dev"]

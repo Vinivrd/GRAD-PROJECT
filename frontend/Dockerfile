@@ -10,7 +10,6 @@ RUN npm install
 
 # Copia o restante dos arquivos da aplicação
 COPY . ./
-
 # Executa o build do React
 RUN npm run build
 
